@@ -31,6 +31,72 @@ The generated SQLite file and source CSV are not committed because they are larg
 
 ## Quick Start
 
+### Ubuntu / Linux
+
+Install system packages:
+
+```bash
+sudo apt update
+sudo apt install -y git python3 python3-venv python3-pip unzip curl
+```
+
+Clone the repository to your home directory:
+
+```bash
+git clone https://github.com/API-Hook/ip2location-api.git ~/ip2location-api
+cd ~/ip2location-api
+```
+
+For a server-style path, use `/opt/ip2location-api` instead:
+
+```bash
+sudo mkdir -p /opt/ip2location-api
+sudo chown -R "$USER:$USER" /opt/ip2location-api
+git clone https://github.com/API-Hook/ip2location-api.git /opt/ip2location-api
+cd /opt/ip2location-api
+```
+
+Create a virtual environment and install dependencies:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+pip install -r requirements.txt
+```
+
+Download and extract the IP2Location LITE DB5 CSV, then place it at:
+
+```text
+data/IP2LOCATION-LITE-DB5.CSV
+```
+
+Build the SQLite database:
+
+```bash
+python scripts/build_database.py --input data/IP2LOCATION-LITE-DB5.CSV --output data/ip2location.sqlite
+```
+
+Start the API:
+
+```bash
+uvicorn app.main:app --host 0.0.0.0 --port 8000 --workers 1
+```
+
+One-line start command after setup:
+
+```bash
+cd ~/ip2location-api && source .venv/bin/activate && uvicorn app.main:app --host 0.0.0.0 --port 8000 --workers 1
+```
+
+Then open:
+
+```text
+http://127.0.0.1:8000/api/v1/lookup?ip=8.8.8.8
+```
+
+### macOS / Generic Bash
+
 Clone the repository:
 
 ```bash
@@ -46,7 +112,9 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-On Windows PowerShell:
+### Windows PowerShell
+
+Create a virtual environment and install dependencies:
 
 ```powershell
 python -m venv .venv
