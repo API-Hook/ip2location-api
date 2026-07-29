@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Free Offline IP Geolocation</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="lookup-panel">
+        <div class="intro">
+          <p class="eyebrow">Offline IPv4 lookup</p>
+          <h1>Free Offline IP Geolocation</h1>
+          <p class="lede">
+            Query an indexed local IP2Location LITE database without sending lookups to third-party APIs.
+          </p>
+        </div>
+
+        <form id="lookup-form" class="lookup-form" novalidate>
+          <label for="ip-input">IP address</label>
+          <div class="input-row">
+            <input id="ip-input" name="ip" type="text" maxlength="64" placeholder="8.8.8.8" autocomplete="off" />
+            <button type="submit" id="lookup-button">Lookup</button>
+            <button type="button" id="me-button" class="secondary">Use my IP</button>
+          </div>
+          <p id="status" class="status" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section id="result-card" class="result-card hidden" aria-live="polite">
+        <div class="result-header">
+          <div>
+            <p class="eyebrow">Result</p>
+            <h2 id="result-ip">8.8.8.8</h2>
+          </div>
+          <button type="button" id="copy-button" class="secondary">Copy JSON</button>
+        </div>
+
+        <dl class="result-grid">
+          <div><dt>Country code</dt><dd id="country-code"></dd></div>
+          <div><dt>Country name</dt><dd id="country-name"></dd></div>
+          <div><dt>Region</dt><dd id="region-name"></dd></div>
+          <div><dt>City</dt><dd id="city-name"></dd></div>
+          <div><dt>Latitude</dt><dd id="latitude"></dd></div>
+          <div><dt>Longitude</dt><dd id="longitude"></dd></div>
+          <div><dt>IP numeric value</dt><dd id="ip-number"></dd></div>
+          <div><dt>Matched IP range</dt><dd id="ip-range"></dd></div>
+        </dl>
+
+        <pre id="raw-json" class="raw-json"></pre>
+      </section>
+
+      <p class="attribution">
+        This product includes IP2Location LITE data available from
+        <a href="https://lite.ip2location.com" rel="noopener noreferrer">https://lite.ip2location.com</a>
+      </p>
+    </main>
+    <script src="/static/app.js" defer></script>
+  </body>
+</html>
+

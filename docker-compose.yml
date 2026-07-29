@@ -1,0 +1,18 @@
+services:
+  ip-location-api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_PATH: /app/data/ip2location.sqlite
+      ALLOW_NON_PUBLIC_IPS: "false"
+      TRUST_PROXY: "false"
+      RATE_LIMIT_REQUESTS: "60"
+      RATE_LIMIT_WINDOW_SECONDS: "60"
+      CORS_ORIGINS: "*"
+      APP_HOST: 0.0.0.0
+      APP_PORT: "8000"
+      LOG_LEVEL: INFO
+    volumes:
+      - ./data/ip2location.sqlite:/app/data/ip2location.sqlite:ro
+
